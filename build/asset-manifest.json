@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9a5c6096.css",
+    "main.js": "/static/js/main.6b286c57.js",
+    "static/js/453.bda4ba11.chunk.js": "/static/js/453.bda4ba11.chunk.js",
+    "static/media/pizza1.jpg": "/static/media/pizza1.4b1562d56a70de75a8f4.jpg",
+    "static/media/pizza2.jpg": "/static/media/pizza2.8e701982118df2926ec5.jpg",
+    "static/media/pizza3.jpg": "/static/media/pizza3.1bdb8d278f8c430d09c7.jpg",
+    "static/media/menu1.jpg": "/static/media/menu1.e3481afc6066ae39d59a.jpg",
+    "static/media/menu4.jpg": "/static/media/menu4.b18d5acf79f81e871e69.jpg",
+    "static/media/menu2.jpg": "/static/media/menu2.91658d12aaf077515e0a.jpg",
+    "static/media/menu3.jpg": "/static/media/menu3.91421c5a4a005d7fedff.jpg",
+    "index.html": "/index.html",
+    "main.9a5c6096.css.map": "/static/css/main.9a5c6096.css.map",
+    "main.6b286c57.js.map": "/static/js/main.6b286c57.js.map",
+    "453.bda4ba11.chunk.js.map": "/static/js/453.bda4ba11.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9a5c6096.css",
+    "static/js/main.6b286c57.js"
+  ]
+}
