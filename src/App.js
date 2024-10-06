@@ -1,35 +1,61 @@
 import "./App.css";
 import { Container, Row, Col } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import Form from "react-bootstrap/Form";
-import Carousel from "react-bootstrap/Carousel";
-import Badge from "react-bootstrap/Badge";
-import Modal from "react-bootstrap/Modal";
-import pizza1 from "./image/pizza1.jpg";
-import pizza2 from "./image/pizza2.jpg";
-import pizza3 from "./image/pizza3.jpg";
-import menu1 from "./image/menu1.jpg";
-import menu2 from "./image/menu2.jpg";
-import menu3 from "./image/menu3.jpg";
-import menu4 from "./image/menu4.jpg";
+
 import ModalShow from "./Component/ModalShow";
 import Menu from "./Component/Menu";
 import Slider from "./Component/Slider";
 import Header from "./Component/Header";
 import { useState } from "react";
 function App() {
+  const [count, setCount] = useState(0);
   const [show, setShow] = useState(false);
+  const [menuQuantity, setMenuQuantity] = useState([]);
+
+  const handleClick = (item) => {
+    setCount((prev) => prev + 1);
+    setMenuQuantity((prevItems) => {
+      const existingItem = prevItems.find((i) => i.id === item.id);
+
+      if (existingItem) {
+        // Increment quantity if item exists
+        return prevItems.map((i) =>
+          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+        );
+      } else {
+        // Add new item with quantity 1
+        return [...prevItems, { ...item, quantity: 1 }];
+      }
+    });
+  };
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [count, setCount] = useState(0);
-  const handleClick = () => {
-    setCount((prev) => prev + 1);
+
+  const incrementQuantity = (itemId) => {
+    setMenuQuantity((prevItems) => {
+      setCount((prevCount) => prevCount + 1); // Increase total count
+      return prevItems.map((item) =>
+        item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+      );
+    });
   };
+
+  const decrementQuantity = (itemId) => {
+    setMenuQuantity((prevItems) => {
+      const item = prevItems.find((i) => i.id === itemId);
+
+      if (item.quantity > 1) {
+        setCount((prevCount) => prevCount - 1); // Decrease total count
+        return prevItems.map((i) =>
+          i.id === itemId ? { ...i, quantity: i.quantity - 1 } : i
+        );
+      } else {
+        setCount((prevCount) => prevCount - 1); // Decrease total count
+        return prevItems.filter((i) => i.id !== itemId); // Remove item if quantity is 0
+      }
+    });
+  };
+
   return (
     <div className="bg-dark">
       <Container>
@@ -37,9 +63,12 @@ function App() {
         <Slider></Slider>
         <Menu handleClick={handleClick}></Menu>
         <ModalShow
+          handleIncrement={incrementQuantity}
+          handleDecrement={decrementQuantity}
+          menuQuantity={menuQuantity}
           handleClose={handleClose}
-          show={show}
           handleShow={handleShow}
+          show={show}
         ></ModalShow>
       </Container>
     </div>

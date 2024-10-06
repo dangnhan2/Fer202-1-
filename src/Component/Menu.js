@@ -5,6 +5,33 @@ import menu1 from "../image/menu1.jpg";
 import menu2 from "../image/menu2.jpg";
 import menu3 from "../image/menu3.jpg";
 import menu4 from "../image/menu4.jpg";
+
+const menuArrays = [
+  {
+    id: 1,
+    name: "Pizza 1",
+    price: 15.99,
+    image: menu1,
+  },
+  {
+    id: 2,
+    name: "Pizza 2",
+    price: 15.99,
+    image: menu2,
+  },
+  {
+    id: 3,
+    name: "Pizza 3",
+    price: 15.99,
+    image: menu3,
+  },
+  {
+    id: 4,
+    name: "Pizza 3",
+    price: 15.99,
+    image: menu4,
+  },
+];
 const Menu = (props) => {
   return (
     <>
@@ -12,69 +39,25 @@ const Menu = (props) => {
         <h1 style={{ color: "#fff" }}>Our Menu</h1>
       </Row>
       <Row>
-        <Col>
-          <Card>
-            <Card.Img variant="top" src={menu1} />
-            <Card.Body>
-              <Card.Title>Card Title</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </Card.Text>
-              <Button variant="primary" onClick={props.hanldeClick}>
-                buy
-              </Button>
-            </Card.Body>
-          </Card>
-        </Col>
-
-        <Col>
-          <Card>
-            <Card.Img variant="top" src={menu2} />
-            <Card.Body>
-              <Card.Title>Card Title</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </Card.Text>
-              <Button variant="primary" onClick={props.hanldeClick}>
-                buy
-              </Button>
-            </Card.Body>
-          </Card>
-        </Col>
-
-        <Col>
-          <Card>
-            <Card.Img variant="top" src={menu3} />
-            <Card.Body>
-              <Card.Title>Card Title</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </Card.Text>
-              <Button variant="primary" onClick={props.hanldeClick}>
-                buy
-              </Button>
-            </Card.Body>
-          </Card>
-        </Col>
-
-        <Col>
-          <Card>
-            <Card.Img variant="top" src={menu4} />
-            <Card.Body>
-              <Card.Title>Card Title</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </Card.Text>
-              <Button variant="primary" onClick={props.hanldeClick}>
-                buy
-              </Button>
-            </Card.Body>
-          </Card>
-        </Col>
+        {menuArrays.map((menu) => {
+          return (
+            <Col key={menu.id}>
+              <Card>
+                <Card.Img variant="top" src={menu.image} />
+                <Card.Body>
+                  <Card.Title>{menu.name}</Card.Title>
+                  <Card.Text>Price: 15.99</Card.Text>
+                  <Button
+                    variant="primary"
+                    onClick={() => props.handleClick(menu)}
+                  >
+                    Buy
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Col>
+          );
+        })}
       </Row>
     </>
   );
