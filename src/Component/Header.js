@@ -16,7 +16,7 @@ const Header = (props) => {
           <Navbar.Brand href="#" style={{ color: "#fff" }}>
             Navbar scroll
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarScroll" />
+          <Navbar.Toggle aria-controls="navbarScroll" className="bg-light" />
           <Navbar.Collapse id="navbarScroll">
             <Nav
               className="me-auto my-2 my-lg-0"
@@ -42,7 +42,7 @@ const Header = (props) => {
 
             <Button
               variant="primary"
-              className="mx-2"
+              className="ms-1 my-2"
               onClick={props.handleShow}
             >
               Profile <Badge bg="secondary">{props.count}</Badge>

@@ -34,8 +34,8 @@ function App() {
   const incrementQuantity = (itemId) => {
     setMenuQuantity((prevItems) => {
       setCount((prevCount) => prevCount + 1); // Increase total count
-      return prevItems.map((item) =>
-        item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+      return prevItems.map((i) =>
+        i.id === itemId ? { ...i, quantity: i.quantity + 1 } : i
       );
     });
   };

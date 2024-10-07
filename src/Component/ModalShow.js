@@ -7,30 +7,30 @@ const ModalShow = (props) => {
         <Modal.Title>Modal title</Modal.Title>
       </Modal.Header>
       <Modal.Body className="my-3">
-        {props.menuQuantity.length === 0 ? (
+        {/* {props.menuQuantity.length === 0 ? (
           <p>Your cart is empty</p>
-        ) : (
-          <ul>
-            {props.menuQuantity.map((menu, index) => (
-              <li key={index}>
-                {menu.name} - Quantity: {menu.quantity}
-                <Button
-                  variant="primary"
-                  className="mx-2"
-                  onClick={() => props.handleIncrement(menu.id)}
-                >
-                  +
-                </Button>
-                <Button
-                  variant="danger"
-                  onClick={() => props.handleDecrement(menu.id)}
-                >
-                  -
-                </Button>
-              </li>
-            ))}
-          </ul>
-        )}
+        ) : ( */}
+        <ul>
+          {props.menuQuantity.map((menu, index) => (
+            <li key={index} style={{ listStyle: "none" }}>
+              {menu.name} - Quantity: {menu.quantity}
+              <Button
+                variant="primary"
+                className="mx-2"
+                onClick={() => props.handleIncrement(menu.id)}
+              >
+                +
+              </Button>
+              <Button
+                variant="danger"
+                onClick={() => props.handleDecrement(menu.id)}
+              >
+                -
+              </Button>
+            </li>
+          ))}
+        </ul>
+        {/* )} */}
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={props.handleClose}>
