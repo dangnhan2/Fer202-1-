@@ -5,7 +5,6 @@ import menu1 from "../image/menu1.jpg";
 import menu2 from "../image/menu2.jpg";
 import menu3 from "../image/menu3.jpg";
 import menu4 from "../image/menu4.jpg";
-
 const menuArrays = [
   {
     id: 1,
@@ -44,14 +43,14 @@ const Menu = (props) => {
             <Col key={menu.id}>
               <Card>
                 <Card.Img variant="top" src={menu.image} />
-                <Card.Body>
+                <Card.Body className="text-center">
                   <Card.Title>{menu.name}</Card.Title>
                   <Card.Text>Price: 15.99</Card.Text>
                   <Button
-                    variant="primary"
+                    variant="outline-warning"
                     onClick={() => props.handleClick(menu)}
                   >
-                    Buy
+                    <i class="bi bi-cart"></i>
                   </Button>
                 </Card.Body>
               </Card>

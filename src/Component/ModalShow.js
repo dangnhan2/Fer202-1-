@@ -7,36 +7,40 @@ const ModalShow = (props) => {
         <Modal.Title>Modal title</Modal.Title>
       </Modal.Header>
       <Modal.Body className="my-3">
-        {/* {props.menuQuantity.length === 0 ? (
-          <p>Your cart is empty</p>
-        ) : ( */}
-        <ul>
-          {props.menuQuantity.map((menu, index) => (
-            <li key={index} style={{ listStyle: "none" }}>
-              {menu.name} - Quantity: {menu.quantity}
-              <Button
-                variant="primary"
-                className="mx-2"
-                onClick={() => props.handleIncrement(menu.id)}
-              >
-                +
-              </Button>
-              <Button
-                variant="danger"
-                onClick={() => props.handleDecrement(menu.id)}
-              >
-                -
-              </Button>
-            </li>
-          ))}
-        </ul>
+        <div>
+          <ol>
+            {props.menuQuantity.map((menu, index) => (
+              <li key={index}>
+                <div className="d-flex justify-content-around align-items-center p-2 ">
+                  <div>
+                    {menu.name} - Quantity: {menu.quantity}
+                  </div>
+                  <div>
+                    <Button
+                      variant="primary"
+                      className="mx-2"
+                      onClick={() => props.handleIncrement(menu.id)}
+                    >
+                      +
+                    </Button>
+                    <Button
+                      variant="danger"
+                      onClick={() => props.handleDecrement(menu.id)}
+                    >
+                      -
+                    </Button>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
         {/* )} */}
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={props.handleClose}>
           Close
         </Button>
-        <Button variant="primary">Understood</Button>
       </Modal.Footer>
     </Modal>
   );

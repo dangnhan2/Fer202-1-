@@ -2,16 +2,14 @@ import Button from "react-bootstrap/Button";
 
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-
+import "bootstrap-icons/font/bootstrap-icons.css";
 import Form from "react-bootstrap/Form";
-
 import Badge from "react-bootstrap/Badge";
-
 import { Container, Row } from "react-bootstrap";
 const Header = (props) => {
   return (
     <Row>
-      <Navbar expand="lg" className="bg-dark ">
+      <Navbar expand="lg" className="bg-dark d-flex">
         <Container fluid>
           <Navbar.Brand href="#" style={{ color: "#fff" }}>
             Navbar scroll
@@ -37,15 +35,22 @@ const Header = (props) => {
                 className="me-2"
                 aria-label="Search"
               />
-              <Button variant="outline-success">Search</Button>
+              <Button variant="outline-success">
+                <i class="bi bi-search"></i>
+              </Button>
             </Form>
+
+            <Button className="mx-2" variant="outline-warning">
+              <i className="bi bi-person" onClick={props.handleShowForm}></i>
+            </Button>
 
             <Button
               variant="primary"
               className="ms-1 my-2"
               onClick={props.handleShow}
             >
-              Profile <Badge bg="secondary">{props.count}</Badge>
+              <i class="bi bi-cart"></i>{" "}
+              <Badge bg="secondary">{props.count}</Badge>
               <span className="visually-hidden">unread messages</span>
             </Button>
           </Navbar.Collapse>

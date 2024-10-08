@@ -6,11 +6,19 @@ import Menu from "./Component/Menu";
 import Slider from "./Component/Slider";
 import Header from "./Component/Header";
 import { useState } from "react";
+import Login from "./Component/Login";
+import Footer from "./Component/Footer";
 function App() {
   const [count, setCount] = useState(0);
   const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const [menuQuantity, setMenuQuantity] = useState([]);
 
+  const [showForm, setShowForm] = useState(false);
+  const handleCloseForm = () => setShowForm(false);
+  const handleShowForm = () => setShowForm(true);
   const handleClick = (item) => {
     setCount((prev) => prev + 1);
     setMenuQuantity((prevItems) => {
@@ -27,9 +35,6 @@ function App() {
       }
     });
   };
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const incrementQuantity = (itemId) => {
     setMenuQuantity((prevItems) => {
@@ -59,7 +64,11 @@ function App() {
   return (
     <div className="bg-dark">
       <Container>
-        <Header handleShow={handleShow} count={count}></Header>
+        <Header
+          handleShow={handleShow}
+          count={count}
+          handleShowForm={handleShowForm}
+        ></Header>
         <Slider></Slider>
         <Menu handleClick={handleClick}></Menu>
         <ModalShow
@@ -70,6 +79,8 @@ function App() {
           handleShow={handleShow}
           show={show}
         ></ModalShow>
+        <Login handleCloseForm={handleCloseForm} showForm={showForm}></Login>
+        <Footer></Footer>
       </Container>
     </div>
   );
