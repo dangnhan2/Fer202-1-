@@ -6,6 +6,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import Form from "react-bootstrap/Form";
 import Badge from "react-bootstrap/Badge";
 import { Container, Row } from "react-bootstrap";
+
 const Header = (props) => {
   return (
     <Row>
@@ -49,7 +50,7 @@ const Header = (props) => {
               className="ms-1 my-2"
               onClick={props.handleShow}
             >
-              <i class="bi bi-cart"></i>{" "}
+              <i class="bi bi-cart"></i>
               <Badge bg="secondary">{props.count}</Badge>
               <span className="visually-hidden">unread messages</span>
             </Button>

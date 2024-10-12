@@ -1,45 +1,20 @@
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
-const Login = (props) => {
-  return (
-    // <Modal show={props.showForm} onHide={props.handleCloseForm}>
-    //   <Modal.Header closeButton>
-    //     <Modal.Title>Modal heading</Modal.Title>
-    //   </Modal.Header>
-    //   <Modal.Body>
-    //     <InputGroup className="mb-3">
-    //       <InputGroup.Text id="inputGroup-sizing-default">
-    //         UserName
-    //       </InputGroup.Text>
-    //       <Form.Control
-    //         aria-label="Default"
-    //         aria-describedby="inputGroup-sizing-default"
-    //       />
-    //     </InputGroup>
-    //     <br />
+import { useState } from "react";
+import { login } from "../Service/Service";
 
-    //     <InputGroup className="mb-3">
-    //       <InputGroup.Text id="inputGroup-sizing-default">
-    //         Password
-    //       </InputGroup.Text>
-    //       <Form.Control
-    //         aria-label="Default"
-    //         aria-describedby="inputGroup-sizing-default"
-    //       />
-    //     </InputGroup>
-    //     <br />
-    //   </Modal.Body>
-    //   <Modal.Footer>
-    //     <Button variant="secondary" onClick={props.handleCloseForm}>
-    //       Close
-    //     </Button>
-    //     <Button variant="primary" onClick={props.handleCloseForm}>
-    //       Save Changes
-    //     </Button>
-    //   </Modal.Footer>
-    // </Modal>
+const Login = (props) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const handleLogin = async () => {
+    let res = await login(username, password);
+    console.log(res);
+    if (res && res.status === 200) {
+      props.handleCloseForm();
+    }
+  };
+  return (
     <Modal show={props.showForm} onHide={props.handleCloseForm}>
       <Modal.Header closeButton>
         <Modal.Title>Modal heading</Modal.Title>
@@ -49,6 +24,8 @@ const Login = (props) => {
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label>Email address</Form.Label>
             <Form.Control
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
               type="email"
               placeholder="name@example.com"
               autoFocus
@@ -56,12 +33,16 @@ const Login = (props) => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" />
+            <Form.Control
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" onClick={props.handleCloseForm}>
+        <Button variant="primary" onClick={handleLogin}>
           Login
         </Button>
       </Modal.Footer>

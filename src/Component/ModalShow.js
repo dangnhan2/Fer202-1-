@@ -13,7 +13,7 @@ const ModalShow = (props) => {
               <li key={index}>
                 <div className="d-flex justify-content-around align-items-center p-2 ">
                   <div>
-                    {menu.name} - Quantity: {menu.quantity}
+                    {menu.title} - Quantity: {menu.quantity}
                   </div>
                   <div>
                     <Button

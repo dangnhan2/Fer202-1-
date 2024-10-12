@@ -5,9 +5,10 @@ import ModalShow from "./Component/ModalShow";
 import Menu from "./Component/Menu";
 import Slider from "./Component/Slider";
 import Header from "./Component/Header";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Login from "./Component/Login";
 import Footer from "./Component/Footer";
+
 function App() {
   const [count, setCount] = useState(0);
   const [show, setShow] = useState(false);
