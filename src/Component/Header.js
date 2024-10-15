@@ -1,13 +1,35 @@
-import Button from "react-bootstrap/Button";
-
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import Form from "react-bootstrap/Form";
-import Badge from "react-bootstrap/Badge";
-import { Container, Row } from "react-bootstrap";
-
+import {
+  Container,
+  Row,
+  Dropdown,
+  Button,
+  Nav,
+  Navbar,
+  Form,
+  Badge,
+} from "react-bootstrap";
+import { UserContext } from "../Context/UserContext";
+import { useContext, useEffect } from "react";
 const Header = (props) => {
+  const { username, status, setStatus, setUsername, setPassword } =
+    useContext(UserContext);
+
+  useEffect(() => {
+    const storedUsername = localStorage.getItem("username");
+    if (storedUsername) {
+      setUsername(storedUsername);
+      setStatus(true); // Assume logged in if username is in localStorage
+    }
+  }, [setUsername, setStatus]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("username");
+    setStatus(false);
+    setUsername("");
+    setPassword("");
+  };
+
   return (
     <Row>
       <Navbar expand="lg" className="bg-dark d-flex">
@@ -41,10 +63,6 @@ const Header = (props) => {
               </Button>
             </Form>
 
-            <Button className="mx-2" variant="outline-warning">
-              <i className="bi bi-person" onClick={props.handleShowForm}></i>
-            </Button>
-
             <Button
               variant="primary"
               className="ms-1 my-2"
@@ -54,10 +72,36 @@ const Header = (props) => {
               <Badge bg="secondary">{props.count}</Badge>
               <span className="visually-hidden">unread messages</span>
             </Button>
+
+            {status ? (
+              <>
+                <div className="ms-2" style={{ color: "white" }}>
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      variant="outline-warning"
+                      style={{ border: "none" }}
+                    >
+                      Welcome: <b>{username}</b>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      <Dropdown.Item onClick={handleLogout}>
+                        <i class="bi bi-box-arrow-right"></i>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+              </>
+            ) : (
+              <Button className="mx-2" variant="outline-warning">
+                <i className="bi bi-person" onClick={props.handleShowForm}></i>
+              </Button>
+            )}
           </Navbar.Collapse>
         </Container>
       </Navbar>
     </Row>
   );
 };
+
 export default Header;

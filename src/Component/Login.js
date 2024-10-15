@@ -1,16 +1,16 @@
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import Form from "react-bootstrap/Form";
-import { useState } from "react";
+import { Button, Modal, Form } from "react-bootstrap";
+import { useContext } from "react";
 import { login } from "../Service/Service";
-
+import { UserContext } from "../Context/UserContext";
 const Login = (props) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const { username, password, handlePassword, handleUsername, setStatus } =
+    useContext(UserContext);
   const handleLogin = async () => {
     let res = await login(username, password);
-    console.log(res);
+    console.log(res.status);
     if (res && res.status === 200) {
+      setStatus(true);
+      localStorage.setItem("username", username);
       props.handleCloseForm();
     }
   };
@@ -25,7 +25,7 @@ const Login = (props) => {
             <Form.Label>Email address</Form.Label>
             <Form.Control
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={handleUsername}
               type="email"
               placeholder="name@example.com"
               autoFocus
@@ -36,7 +36,7 @@ const Login = (props) => {
             <Form.Control
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={handlePassword}
             />
           </Form.Group>
         </Form>
